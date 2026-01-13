@@ -1,15 +1,64 @@
-//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
+import java.util.Scanner;
+
 public class Main {
     public static void main(String[] args) {
-        //TIP Press <shortcut actionId="ShowIntentionActions"/> with your caret at the highlighted text
-        // to see how IntelliJ IDEA suggests fixing it.
-        System.out.printf("Hello and welcome!");
+        Scanner lectura = new Scanner(System.in);
+        ConsultaMoneda consulta = new ConsultaMoneda();
+        int opcion = 0;
+        double amountConversion;
 
-        for (int i = 1; i <= 5; i++) {
-            //TIP Press <shortcut actionId="Debug"/> to start debugging your code. We have set one <icon src="AllIcons.Debugger.Db_set_breakpoint"/> breakpoint
-            // for you, but you can always add more by pressing <shortcut actionId="ToggleLineBreakpoint"/>.
-            System.out.println("i = " + i);
+        try{
+            System.out.println("Sea bienvenido/a al Conversor de moneda =] ");
+
+            while (opcion != 7){
+                System.out.println("""
+                        1) Dólar =>> Peso Argentino
+                        2) Peso Argentino =>> Dólar
+                        3) Dólar =>> Real Brasileño
+                        4) Real Brasileño =>> Dólar
+                        5) Dólar =>> Peso Colombiano
+                        6) Peso Colombiano =>> Dólar
+                        7) Salir
+                        """);
+                System.out.println("Elija una opción válida: ");
+                opcion = Integer.valueOf(lectura.nextLine());
+
+                if (opcion == 7) {
+                    System.out.println("Gracias por usar el conversor 👋");
+                    break;
+                }
+
+                String baseCode = "";
+                String targetCode = "";
+
+                switch (opcion) {
+                    case 1 -> { baseCode = "USD"; targetCode = "ARS"; }
+                    case 2 -> { baseCode = "ARS"; targetCode = "USD"; }
+                    case 3 -> { baseCode = "USD"; targetCode = "BRL"; }
+                    case 4 -> { baseCode = "BRL"; targetCode = "USD"; }
+                    case 5 -> { baseCode = "USD"; targetCode = "COP"; }
+                    case 6 -> { baseCode = "COP"; targetCode = "USD"; }
+                    default -> {
+                        System.out.println("Opción inválida.\n");
+                        continue;
+                    }
+                }
+
+                System.out.print("Ingrese el valor que deseas convertir: ");
+                double amount = Double.parseDouble(lectura.nextLine());
+
+                Moneda moneda = consulta.conversionMoneda(baseCode, targetCode, amount);
+
+                System.out.println(
+                        "El valor " + amount + " [" + baseCode + "] corresponde al valor final de =>>> "
+                                + moneda.conversion_result() + " [" + targetCode + "]\n"
+                );
+            }
+
+        } catch (RuntimeException e) {
+            System.out.println(e.getMessage());
+            System.out.println("Finalizando la aplicación.");
         }
+
     }
 }
