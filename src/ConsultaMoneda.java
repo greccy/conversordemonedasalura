@@ -15,10 +15,14 @@ public class ConsultaMoneda {
 
         try {
             HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+
+            if (response.statusCode() != 200) {
+                throw new RuntimeException("La API respondió con error HTTP: " + response.statusCode());
+            }
             return new Gson().fromJson(response.body(), Moneda.class);
         } catch (Exception e ) {
             System.out.println(e.getMessage());
-            throw new RuntimeException("No encontre esa moneda para conversión");
+            throw new RuntimeException("No se pudo realizar la conversión");
         }
     }
 }
