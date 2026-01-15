@@ -7,11 +7,13 @@ public class Main {
         int opcion = 0;
         double amountConversion;
 
-        System.out.println("Sea bienvenido/a al Conversor de moneda =] ");
 
         try{
 
             while (opcion != 7){
+                System.out.println("*****************************************************");
+                System.out.println("Sea bienvenido/a al Conversor de moneda =] \n");
+
                 System.out.println("""
                         1) Dólar =>> Peso Argentino
                         2) Peso Argentino =>> Dólar
@@ -23,6 +25,8 @@ public class Main {
                         """);
 
                 opcion = ValidacionesInput.validarNumeroEntero(lectura, "Elija una opción válida (1-7): ", 1, 7);
+
+                System.out.println("***************************************************** \n");
 
                 if (opcion == 7) {
                     System.out.println("Gracias por usar el conversor 👋");
@@ -45,8 +49,7 @@ public class Main {
                     }
                 }
 
-                System.out.print("Ingrese el valor que deseas convertir: ");
-                double amount = Double.parseDouble(lectura.nextLine());
+                double amount = ValidacionesInput.validarDoubleAmount(lectura, "Ingrese el valor que desea convertir: ");
 
                 Moneda moneda = consulta.conversionMoneda(baseCode, targetCode, amount);
 

@@ -21,5 +21,23 @@ public class ValidacionesInput {
     }
 
 
+    public static double validarDoubleAmount(Scanner lectura, String mensaje) {
+        while (true) {
+            System.out.print(mensaje);
+            String input = lectura.nextLine().trim().replace(",", ".");
+
+            try {
+                double valor = Double.parseDouble(input);
+                if (valor <= 0) {
+                    System.out.println("El monto debe ser mayor que 0.\n");
+                    continue;
+                }
+                return valor;
+            } catch (NumberFormatException e) {
+                System.out.println("Monto inválido. Ejemplos válidos: 10, 10.5, 250\n");
+            }
+        }
+    }
+
 
 }
