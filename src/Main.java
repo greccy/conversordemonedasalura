@@ -1,3 +1,4 @@
+import java.net.http.HttpClient;
 import java.util.Scanner;
 
 public class Main {
@@ -6,7 +7,7 @@ public class Main {
         ConsultaMoneda consulta = new ConsultaMoneda();
         int opcion = 0;
         double amountConversion;
-
+        HttpClient client = HttpClient.newHttpClient();
 
         try{
 
@@ -51,7 +52,7 @@ public class Main {
 
                 double amount = ValidacionesInput.validarDoubleAmount(lectura, "Ingrese el valor que desea convertir: ");
 
-                Moneda moneda = consulta.conversionMoneda(baseCode, targetCode, amount);
+                Moneda moneda = consulta.conversionMoneda(baseCode, targetCode, amount, client);
 
                 System.out.println(
                         "El valor " + amount + " [" + baseCode + "] corresponde al valor final de =>>> "
