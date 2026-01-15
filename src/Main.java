@@ -7,21 +7,22 @@ public class Main {
         int opcion = 0;
         double amountConversion;
 
+        System.out.println("Sea bienvenido/a al Conversor de moneda =] ");
+
         try{
-            System.out.println("Sea bienvenido/a al Conversor de moneda =] ");
 
             while (opcion != 7){
                 System.out.println("""
                         1) Dólar =>> Peso Argentino
                         2) Peso Argentino =>> Dólar
                         3) Dólar =>> Real Brasileño
-                        4) Real Brasileño =>> Dólar
+                        4) Real Brasileño =>> Dólar 
                         5) Dólar =>> Peso Colombiano
                         6) Peso Colombiano =>> Dólar
                         7) Salir
                         """);
-                System.out.println("Elija una opción válida: ");
-                opcion = Integer.valueOf(lectura.nextLine());
+
+                opcion = ValidacionesInput.validarNumeroEntero(lectura, "Elija una opción válida (1-7): ", 1, 7);
 
                 if (opcion == 7) {
                     System.out.println("Gracias por usar el conversor 👋");
