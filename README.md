@@ -132,7 +132,7 @@ Proyecto desarrollado como ejercicio práctico para aprender:
 - Consumo de APIs
 - Arquitectura limpia
 - Manejo de errores
-- Programación orientada a objetos
+- Programación orientada a objetos 
 
 
 
