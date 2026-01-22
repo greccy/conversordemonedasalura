@@ -106,7 +106,7 @@ Ejemplo de salida: [16/01/2026 18:42] 100.00 USD -> 87500.00 ARS (rate: 875.0000
 ## ⚠️ Consideraciones importantes
 
 ### 1️⃣ API Key
-La API Key está hardcodeada en el código. Para producción se recomienda usar variables de entorno:
+La Api se ha establecido como variable de entorno:
 
 ```java
 System.getenv("EXCHANGE_API_KEY");
